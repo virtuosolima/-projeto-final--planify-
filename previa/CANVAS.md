@@ -1,60 +1,53 @@
-🎯 Canvas do Projeto Final — App Android
-Como usar: este é o primeiro documento do projeto. Preencha em grupo, em uma única aula, antes de escrever qualquer linha de código. Cada bloco tem no máximo 5 linhas — se não couber, o projeto está grande demais. Depois de preenchido e validado pelo professor, ele vira a base do PRD.md.
+Canvas do Projeto Final — App Android
 
 
 
 
 
 Grupo nº
-
-
+STL + A
 Integrantes (3 a 4)
-
-
+4
 Turma
-3º ano — Ensino Médio
+3º ano B — EMI IPI
 Repositório
-https://github.com/____/____
+https://github.com/virtuosolima/-projeto-final--planify-
 Data de preenchimento
-//2026
+09/09/2026
 Entrega final
 10/12/2026
 
 
 
-🧩 Bloco 1 — Nome e pitch do app
-Nome do app: (máx. 30 caracteres — é o mesmo que vai na loja)
+Bloco 1 — Nome e pitch do app
+Nome do app: Planify
 
 Pitch em uma frase:
 
-"O [nome] ajuda [quem] a [fazer o quê] sem precisar de [o problema atual]."
-
-Exemplo: "O TreinoDiário ajuda alunos de academia a registrar séries e cargas sem precisar de caderno de papel."
+"O [Planify] ajuda [empreendedores] a [organizar seus horários e compromissos ] sem precisar de [agendas de papel ou vários apps soltos ]."
 
 
-😖 Bloco 2 — Problema
-Qual dor real vocês estão resolvendo? Descrevam uma situação concreta que alguém vive hoje.
-
+Bloco 2 — Problema
+Muitos pequenos empreendedores (donos de salão, loja, prestadores de serviço autônomo, etc.) cuidam sozinhos de vários compromissos ao mesmo tempo: atendimento a clientes, reuniões com fornecedores, horários de entrega, e tarefas pessoais. Como não têm uma secretária ou sistema de agenda profissional, esses horários ficam espalhados entre WhatsApp, papel, cabeça e lembretes soltos no celular. O resultado: compromissos esquecidos, horários que se sobrepõem (marcar dois clientes no mesmo horário, por exemplo), e tempo perdido tentando lembrar o que precisa ser feito no dia.
 Como esse problema é resolvido hoje (sem o app)?
+Hoje, esse problema costuma ser resolvido de formas improvisadas e pouco confiáveis. Muitos empreendedores anotam seus compromissos em cadernos ou agendas de papel, o que funciona até certo ponto, mas não oferece nenhum tipo de aviso ou lembrete automático. Outros acabam deixando a própria conversa no WhatsApp virar uma espécie de agenda, com lembretes soltos misturados ao atendimento do cliente, o que facilita perder informações importantes no meio da rotina. Também é comum recorrer a alarmes e lembretes genéricos no celular, que avisam sobre um horário, mas sem contexto nenhum sobre o compromisso em si. Algumas pessoas tentam organizar tudo em planilhas simples no Excel ou Google Sheets, mas isso exige atualização manual constante e não gera nenhum tipo de aviso quando um horário está se aproximando. E, no fim das contas, muita gente ainda depende só da própria memória — o famoso "vou lembrar" — que falha justamente quando a rotina fica mais corrida e cheia de compromissos.
 
 
-👥 Bloco 3 — Público-alvo
-Para quem é o app? Sejam específicos (idade, contexto, com que frequência usariam).
 
-Perfil principal:
-Quando/onde usam:
-Uma pessoa real que testaria o app: (nome e relação com o grupo — ela vai testar o .apk na Etapa 3)
+Bloco 3 — Público-alvo
+Para quem é o app? 
+Perfil principal: Pequenos empreendedores e autônomos, entre 25 e 45 anos, que atendem clientes ou gerenciam compromissos por conta própria e não têm equipe administrativa — como cabeleireiros, personal trainers, consultores, prestadores de serviço em geral e donos de pequenos negócios locais. 
+Quando/onde usam: Usam o app diariamente, principalmente pela manhã (para revisar os compromissos do dia) e ao longo do dia sempre que um novo horário é marcado ou remarcado — seja no próprio local de trabalho, entre atendimentos, ou em qualquer lugar pelo celular, já que a rotina dessas pessoas raramente é em frente a um computador. 
+Uma pessoa real que testaria o app: Ana Cláudia — mãe da aluna Letícia Gabriela, possui um salão de beleza. 
 
-
-💡 Bloco 4 — Solução em uma tela
-Descreva o que a tela principal mostra e o que o usuário consegue fazer nela.
-
-A tela principal lista:
-A ação principal do usuário é:
-Depois de agir, o usuário vê:
+Bloco 4 — Solução em uma tela
+A tela principal lista: os compromissos organizados por data, com foco no dia atual por padrão (podendo o usuário navegar para dias anteriores ou futuros, por exemplo por um calendário ou setas de navegação). Para cada compromisso, a lista exibe: o horário de início (e término, se preenchido), o título/nome do cliente, um indicador visual de status (pendente, em andamento, concluído ou cancelado) e um ícone pequeno indicando se há lembrete ativo. Os compromissos aparecem ordenados cronologicamente, do mais cedo para o mais tarde, e os que já passaram do horário (e não foram marcados como concluídos) ficam visualmente diferenciados — por exemplo, em cinza ou com um aviso de atraso. Se não houver nenhum compromisso cadastrado para o dia selecionado, a tela mostra uma mensagem simples incentivando o usuário a adicionar o primeiro compromisso.
+A ação principal do usuário é: adicionar um novo compromisso preenchendo um formulário simples com os seguintes campos: nome do cliente (ou descrição do compromisso, para quem não atende cliente diretamente), data, horário de início (e opcionalmente horário de término), um campo de observações livres (ex: "levar orçamento", "primeira consulta") e a opção de ativar um lembrete, escolhendo com quanto tempo de antecedência quer ser avisado (ex: 15 min, 1h, 1 dia antes).
+Depois de agir, o usuário vê: o retorno automático para a tela principal, onde o novo compromisso já aparece na posição correta da lista, ordenado por horário, com um aviso curto e discreto (toast ou snackbar) confirmando que foi salvo. Se o compromisso for para o dia atual, ele aparece destacado visualmente (ex: cor diferente ou ícone de "próximo"). Caso o lembrete tenha sido ativado, o sistema agenda a notificação local automaticamente, sem exigir nenhuma ação extra do usuário.
+Observação: a recorrência de compromissos e a detecção automática de conflito de horário ficaram fora do MVP (ver Bloco 6) — podem entrar como evolução futura. 
 
 
-✅ Bloco 5 — Funcionalidades do MVP
+Bloco 5 — Funcionalidades do MVP
 Máximo de 4 funcionalidades. Se tiver mais, corte. Lembre: qualidade acima de complexidade.
 
 #
@@ -62,65 +55,63 @@ Funcionalidade
 Essencial?
 Quem faz
 F1
-
-
+Adicionar compromisso (cliente/descrição, data, horário, lembrete opcional) 
 Sim
-
-
+Leticia
 F2
-
-
+Listar compromissos do dia, ordenados por horário, com status visual 
 Sim
-
-
+Sara
 F3
-
-
-Sim/Não
-
-
+Editar ou excluir um compromisso já cadastrado 
+Sim
+Thales
 F4
-
-
-Não
-
-
+Notificação/lembrete automático no horário definido  
+Sim/Não
+Abner
 
 
 
-🚫 Bloco 6 — Fora do escopo
-O que o app não vai fazer nesta entrega. Escrever isso aqui protege vocês de perder o prazo.
-
-❌
-❌
-❌
-
-Sugestões comuns de coisas a deixar de fora: login/cadastro, notificações push, chat, mapa, pagamento, modo offline completo, sincronização em nuvem.
+Bloco 6 — Fora do escopo
+❌ Login/cadastro de usuário e múltiplas contas — o app funciona com um único usuário local, sem necessidade de criar conta.
+❌ Sincronização em nuvem entre dispositivos — os compromissos ficam salvos apenas no banco de dados local do aparelho (Room), sem backup automático.
+❌ Notificações push enviadas por servidor externo — apenas lembretes locais agendados pelo próprio app (AlarmManager/WorkManager) estão no escopo.
+❌ Detecção automática de conflito de horários, chat, mapa e pagamento — não fazem parte desta entrega.
 
 
-⚙️ Bloco 7 — Caminho técnico
+Bloco 7 — Caminho técnico
 Marque uma opção (as três valem a mesma nota):
 
 Opção A — Room: dados salvos no próprio celular (lista de compras, agenda, diário de treino, controle financeiro)
-Opção B — Retrofit: dados vindos de uma API pública (notícias, filmes, feed, clima)
-Opção C — Desafio: API + salvar favoritos localmente
 
-Se escolheu B ou C — qual API? (link da documentação + precisa de chave? é gratuita?)
-
+Opção escolhida: A — Room (dados salvos no próprio celular).
+Faz sentido para o Planify porque os compromissos são dados pessoais do usuário, não precisam vir de uma API externa, e o app já foi definido (Bloco 6) como local, sem sincronização em nuvem.
 Bibliotecas que o grupo vai usar:
+Room (banco de dados local — tabela de compromissos)
+ViewModel + LiveData (ou Flow) para observar a lista de compromissos na tela
+RecyclerView (ou Jetpack Compose, se o grupo optar por Compose) para exibir a lista
+AlarmManager ou WorkManager para agendar os lembretes/notificações locais
+Navigation Component para navegar entre a tela principal e a tela de "novo compromisso"
+Onde entra o try/catch?
+Pode falhar
+O usuário vê a mensagem
+Campo obrigatório em branco (ex: horário não preenchido)
+"Preencha o horário do compromisso antes de salvar."
+Erro ao inserir/ler no banco Room
+"Não foi possível salvar o compromisso. Tente novamente."
+Lista de compromissos vazia (não é bem um erro, mas precisa de tratamento)
+Mensagem incentivando a cadastrar o primeiro compromisso
+Falha ao agendar o lembrete (permissão de notificação negada)
+"Não foi possível ativar o lembrete. Verifique as permissões de notificação do app."
 
-Onde entra o try/catch? (qual operação pode falhar: banco vazio, internet caindo, API fora do ar, campo em branco)
-
-Pode falhar:
-O usuário vê a mensagem:
 
 
-🎨 Bloco 8 — Identidade visual
+Bloco 8 — Identidade visual
 Item
 Definição do grupo
 Nome exibido (strings.xml)
-
-
+Planify 
 Cor principal (hex, em Color.kt)
 #______
 Ideia do ícone (512×512)
@@ -133,55 +124,43 @@ Versão inicial
 
 
 
-👤 Bloco 9 — Equipe, papéis e riscos
+Bloco 9 — Equipe, papéis e riscos
 Integrante
 Papel principal
 Responsável por
-
-
+Thales
 Dev / telas
-
-
-
-
+Desenvolver a estrutura das telas de forma coerente e organizada.
+Abner
 Dev / dados (Room ou Retrofit)
-
-
-
-
+Desenvolver e organizar os dados dentro do app em processo de desenvolvimento.
+Sara
 Design e identidade visual
-
-
-
-
+Desenvolve a identidade visual do aplicativo.
+Leticia
 Documentação, build e entrega
-
-
+Documenta e cataloga o que está sendo desenvolvido.
 
 
 Todos programam. O "papel" define quem responde por aquela parte, não quem trabalha sozinho.
 
 Riscos — o que pode dar errado e o plano B:
 
+
 Risco
 Plano B
+Lembretes não dispararem corretamente (limitações do Android com AlarmManager em segundo plano)
+Testar cedo (a partir do M3) em um celular real, não só no emulador
+Atraso na conclusão da camada de dados (Room)
+Priorizar F1/F2/F3 antes de qualquer funcionalidade extra; F4 é a primeira a ser cortada
+Um integrante ficar sobrecarregado por causa de faltas de outro
+Revisar semanalmente quem está travado e redistribuir tarefas pequenas
+Conflitos ao subir código pro mesmo arquivo no Git
+Cada um trabalha em branch própria e faz pull request antes de mesclar no main
 
 
 
-
-
-
-
-
-
-
-
-🤖 Bloco 10 — Acordo de trabalho com IA
-A implementação pode ser feita com o Gemini no Android Studio. Vocês orientam, ele digita — e cada integrante precisa saber explicar o que entrou no projeto. Regras completas em docs/USO_DE_IA.md.
-
-Três regras que vamos escrever no nosso AGENTS.md (o arquivo que diz à IA como trabalhar no nosso projeto):
-
-1. 2. 3.
+Bloco 10 — Acordo de trabalho com IA
 
 Combinados do grupo:
 
@@ -194,7 +173,7 @@ Outro combinado nosso:
 Como vamos garantir que todos entendem tudo (ex.: quem implementa apresenta o arquivo aos outros; revezar as partes; revisar o pull request do colega):
 
 
-🗓️ Bloco 11 — Marcos até 10/12
+Bloco 11 — Marcos até 10/12
 Marco
 Prazo
 Como se comprova no GitHub
@@ -222,7 +201,7 @@ tag v1.0 no repositório
 
 
 
-🏁 Bloco 12 — Definição de pronto
+Bloco 12 — Definição de pronto
 O grupo só considera o app pronto quando todas estas frases forem verdadeiras:
 
 O app abre e não fecha sozinho depois de 5 minutos de uso.
@@ -237,7 +216,7 @@ Cada integrante consegue abrir o projeto e fazer uma mudança pequena sozinho �
 Todo arquivo nosso tem o comentário de fronteira escrito por nós.
 
 
-✍️ Validação do professor
+Validação do professor
 
 
 
