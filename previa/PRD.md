@@ -144,3 +144,263 @@ Ana Cláudia, dona de um salão de beleza.
         └── acessa Clientes → [Lista de Clientes]
                                       │
                                       └── Adicionar → [Cadastro de Cliente]
+| **Tela**                | **O que mostra**                                                                                                              | **Ações disponíveis**                                                                 |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Principal               | Resumo mensal, atendimentos, faturamento, clientes, média, gráfico por dia da semana, horas trabalhadas e clientes atendidos. | Navegar entre meses, visualizar estatísticas, acessar compromisso e acessar clientes. |
+| Cadastro de Compromisso | Cliente, descrição, data, horário, valor, pagamento, observações e lembrete.                                                  | Selecionar cliente, preencher dados e salvar.                                         |
+| Detalhe do Compromisso  | Todas as informações do compromisso, incluindo o cliente relacionado.                                                         | Editar, excluir e marcar como concluído.                                              |
+| Lista de Clientes       | Clientes cadastrados com nome e telefone.                                                                                     | Visualizar, adicionar e excluir cliente.                                              |
+| Cadastro de Cliente     | Nome, telefone e observações.                                                                                                 | Preencher dados e salvar.                                                             |
+
+**Estado vazio da tela principal:**
+
+> "Nenhum compromisso registrado neste mês."
+
+**Rascunhos das telas:**
+
+- docs/telas/01-principal.png
+- docs/telas/02-compromisso.png
+- docs/telas/03-detalhe-compromisso.png
+- docs/telas/04-clientes.png
+- docs/telas/05-cadastro-cliente.png
+
+---
+
+## 7. Dados
+
+### Entidade principal: `Compromisso`
+
+| **Campo**            | **Tipo**   | **Obrigatório** | **Observação**                                            |
+| -------------------- | ---------- | --------------- | --------------------------------------------------------- |
+| id                   | Long       | sim             | Chave primária, autogerada.                               |
+| clienteId            | Long       | sim             | Referência obrigatória ao cliente relacionado.            |
+| descricao            | String     | sim             | Nome ou descrição do compromisso.                         |
+| data                 | LocalDate  | sim             | Data do compromisso.                                      |
+| horarioInicio        | LocalTime  | sim             | Horário inicial.                                          |
+| horarioFim           | LocalTime? | não             | Horário final, quando informado.                          |
+| observacoes          | String?    | não             | Informações adicionais.                                   |
+| valor                | Double     | sim             | Valor do serviço em reais.                                |
+| statusPagamento      | String     | sim             | "Pago" ou "Pendente".                                     |
+| statusCompromisso    | String     | sim             | "Pendente", "Em andamento", "Concluído" ou "Cancelado".   |
+| lembreteAtivo        | Boolean    | não             | Indica se existe lembrete.                                |
+| antecedenciaLembrete | Int?       | não             | Definida como 60 minutos quando o lembrete estiver ativo. |
+
+### Entidade: `Cliente`
+
+| **Campo**   | **Tipo** | **Obrigatório** | **Observação**                          |
+| ----------- | -------- | --------------- | --------------------------------------- |
+| id          | Long     | sim             | Chave primária, autogerada.             |
+| nome        | String   | sim             | Nome do cliente.                        |
+| telefone    | String   | sim             | Telefone para contato.                  |
+| observacoes | String?  | não             | Informações adicionais sobre o cliente. |
+
+**Operações necessárias para `Compromisso`:**
+
+- (X) inserir
+- (X) listar
+- (X) atualizar
+- (X) excluir
+
+**Operações necessárias para `Cliente`:**
+
+- (X) inserir
+- (X) listar
+- (X) atualizar
+- (X) excluir
+
+### Relacionamento
+
+Um cliente poderá possuir vários compromissos.
+Todo compromisso deverá estar obrigatoriamente vinculado a um cliente.
+Ao excluir um cliente, os compromissos vinculados a ele também serão excluídos no MVP, após confirmação do usuário.
+
+### Rede
+
+O MVP não utilizará API externa.
+Retrofit + Gson poderão permanecer configurados na infraestrutura inicial do projeto, conforme orientação do projeto, mas não serão necessários para as funcionalidades da primeira versão.
+
+---
+
+## 8. Arquitetura e tecnologias
+
+| **Item**               | **Escolha**                                                                            |
+| ---------------------- | -------------------------------------------------------------------------------------- |
+| Linguagem              | Kotlin                                                                                 |
+| Interface              | (X) Jetpack Compose ( ) XML/Views                                                      |
+| Persistência           | (X) Room ( ) —                                                                         |
+| Rede                   | ( ) Retrofit (X) —                                                                     |
+| Outras bibliotecas     | Material 3, Navigation Compose, KSP, Kotlin Coroutines, Flow, ViewModel e AlarmManager |
+| `minSdk` / `targetSdk` | 24 (Android 7.0 - Nougat) / 35 (Android 15)                                            |
+
+**Organização de pastas do projeto:**
+app/src/main/java/br/edu/ifpe/planify/
+├── ui/
+│   ├── theme/
+│   ├── navigation/
+│   └── features/
+├── data/
+│   ├── local/
+│   └── repository/
+├── model/
+└── MainActivity.kt
+
+**Persistência:**
+Os dados serão armazenados localmente utilizando Room Database.
+**Lembretes:**
+Os lembretes serão realizados localmente pelo dispositivo utilizando AlarmManager. O aplicativo não dependerá de servidor externo para enviar notificações.
+
+---
+
+## 9. Tratamento de erros
+
+| **Situação de falha**       | **O que o app faz**                                       | **Mensagem para o usuário**                                                   |
+| --------------------------- | --------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Lista vazia                 | Mantém a tela normalmente e apresenta o estado vazio.     | "Nenhum compromisso registrado neste mês."                                    |
+| Campo obrigatório em branco | Impede o salvamento e destaca os campos necessários.      | "Preencha os campos obrigatórios antes de salvar."                            |
+| Cliente não selecionado     | Impede o salvamento do compromisso.                       | "Selecione um cliente antes de salvar."                                       |
+| Horário não preenchido      | Impede o salvamento do compromisso.                       | "Preencha o horário do compromisso antes de salvar."                          |
+| Valor inválido              | Impede o salvamento e solicita correção.                  | "Informe um valor válido."                                                    |
+| Erro ao salvar no banco     | Mantém o usuário na tela e informa a falha.               | "Não foi possível salvar os dados. Tente novamente."                          |
+| Erro ao carregar dados      | Mantém a tela e informa a falha.                          | "Não foi possível carregar os dados."                                         |
+| Erro ao excluir             | Mantém o item e informa a falha.                          | "Não foi possível excluir. Tente novamente."                                  |
+| Falha ao agendar lembrete   | Mantém o compromisso salvo e informa a falha no lembrete. | "Não foi possível ativar o lembrete. Verifique as permissões de notificação." |
+| Confirmação de exclusão     | Apresenta uma caixa de confirmação antes da exclusão.     | "Tem certeza que deseja excluir?"                                             |
+
+Como o MVP não utiliza internet, situações de API fora do ar ou falta de conexão não se aplicam às funcionalidades principais.
+
+---
+
+## 10. Identidade visual e publicação
+
+| **Item**                      | **Definição**          | **Onde fica**      |
+| ----------------------------- | ---------------------- | ------------------ |
+| Nome do app                   | Planify                | strings.xml        |
+| Cor principal                 | Azul-marinho — #010736 | Color.kt           |
+| Cor secundária                | [EM ABERTO]            | Color.kt           |
+| Ícone 512×512                 | Logo do Planify        | loja/icone-512.png |
+| applicationId                 | br.edu.ifpe.planify    | build.gradle.kts   |
+| `versionName` / `versionCode` | `1.0` / `1`            | build.gradle.kts   |
+
+**Estilo visual previsto:**
+
+- moderno;
+- simples;
+- minimalista;
+- fundo claro;
+- azul-marinho como cor principal;
+- cards para apresentação dos compromissos;
+- ícones simples;
+- poucos elementos por tela.
+
+**Material da loja:**
+
+| **Artefato**          | **Limite**    | **Conteúdo**                    |
+| --------------------- | ------------- | ------------------------------- |
+| Título                | 30 caracteres | Planify                         |
+| Descrição curta       | 80 caracteres | [EM ABERTO]                     |
+| Descrição completa    | —             | Escrever em `loja/descricao.md` |
+| Imagem de destaque    | 1024×500      | loja/destaque-1024x500.png      |
+| Screenshots           | mín. 2        | loja/screenshots/               |
+| Esboço de privacidade | —             | loja/privacidade.md             |
+| Arquivo `.aab`        | —             | loja/app-release.aab            |
+
+**Privacidade:**
+O MVP não terá conta de usuário nem servidor externo. Os dados de clientes e compromissos serão armazenados localmente no dispositivo.
+
+---
+
+## 11. Plano de testes
+
+| **#** | **O que testar**                | **Passos**                                                                | **Resultado esperado**                                                                     | **OK?** |
+| ----- | ------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------- |
+| T1    | Abrir o app pela primeira vez   | Instalar e abrir                                                          | Tela principal apresenta o resumo mensal e, sem compromissos, mostra o estado vazio.       | <br>    |
+| T2    | Navegar entre meses             | Utilizar os controles de navegação da tela principal.                     | O mês exibido é alterado e os dados apresentados correspondem ao mês selecionado.          | <br>    |
+| T3    | Cadastrar cliente               | Abrir Clientes, adicionar cliente, preencher dados e salvar.              | Cliente aparece na lista.                                                                  | <br>    |
+| T4    | Criar compromisso               | Adicionar compromisso, selecionar cliente, preencher os dados e salvar.   | Compromisso aparece nos registros do mês correspondente.                                   | <br>    |
+| T5    | Impedir compromisso sem cliente | Tentar salvar um compromisso sem selecionar cliente.                      | Salvamento é impedido e uma mensagem é apresentada.                                        | <br>    |
+| T6    | Editar compromisso              | Abrir um compromisso, alterar um dado e salvar.                           | Informação atualizada aparece nos dados do compromisso e nos indicadores quando aplicável. | <br>    |
+| T7    | Excluir compromisso             | Abrir um compromisso, selecionar excluir e confirmar.                     | Compromisso deixa de aparecer nos registros do mês.                                        | <br>    |
+| T8    | Marcar como concluído           | Abrir compromisso e alterar o status.                                     | Status passa para "Concluído".                                                             | <br>    |
+| T9    | Testar pagamento                | Criar compromisso e selecionar "Pago" ou "Pendente".                      | Status selecionado permanece salvo.                                                        | <br>    |
+| T10   | Testar lembrete                 | Criar compromisso com lembrete ativo.                                     | Notificação é apresentada no horário programado.                                           | <br>    |
+| T11   | Testar indicadores mensais      | Criar diferentes compromissos no mesmo mês.                               | Atendimentos, faturamento, clientes e média são calculados corretamente.                   | <br>    |
+| T12   | Testar estatísticas             | Criar compromissos em diferentes dias da semana e com horários definidos. | Gráfico, total de horas e clientes atendidos apresentam os dados correspondentes.          | <br>    |
+| T13   | Reabrir o app                   | Cadastrar dados, fechar e abrir novamente.                                | Dados continuam disponíveis.                                                               | <br>    |
+| T14   | Falha de banco                  | Provocar uma situação de erro durante uma operação de banco.              | Aplicativo não fecha e apresenta mensagem clara.                                           | <br>    |
+| T15   | Campos obrigatórios             | Tentar salvar sem preencher campos obrigatórios.                          | Salvamento é impedido e mensagem é apresentada.                                            | <br>    |
+| T16   | Teste com usuário externo       | Pessoa de fora do grupo utiliza o aplicativo sem explicação.              | Consegue realizar a ação principal.                                                        | <br>    |
+
+**Testado em:**
+[EM ABERTO] Informar modelo dos celulares e versão do Android utilizados nos testes.
+
+---
+
+## 12. Cronograma
+
+| **Marco**                        | **Prazo** | **Responsável** | **Status**  |
+| -------------------------------- | --------- | --------------- | ----------- |
+| M1 — Canvas + repositório        | 16/09     | Grupo           | Concluído   |
+| M2 — PRD aprovado + telas        | 30/09     | Grupo           | Concluído   |
+| M3 — Funcionalidade base         | 21/10     | Grupo           | [EM ABERTO] |
+| M4 — Dados e erros tratados      | 11/11     | Grupo           | [EM ABERTO] |
+| M5 — Identidade + `.apk` testado | 25/11     | Grupo           | [EM ABERTO] |
+| M6 — `.aab` + loja + README      | 02/12     | Grupo           | [EM ABERTO] |
+| **Entrega e apresentação**       | **10/12** | Grupo           | [EM ABERTO] |
+
+---
+
+## 13. Riscos
+
+| **Risco**                                            | **Impacto** | **Plano B**                                                                                                           |
+| ---------------------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------- |
+| Integrante fica sem computador                       | Médio       | Reorganizar temporariamente as tarefas entre os integrantes e utilizar outro equipamento disponível.                  |
+| Problemas com Room ou persistência                   | Alto        | Simplificar as operações de banco e revisar a implementação com testes isolados.                                      |
+| Problemas na implementação dos lembretes             | Médio       | Implementar primeiro o cadastro e gerenciamento dos compromissos e deixar o lembrete para uma etapa posterior do MVP. |
+| Dificuldade de integração entre as partes do projeto | Alto        | Manter a estrutura de pastas e responsabilidades definidas e integrar as funcionalidades gradualmente.                |
+| Prazo insuficiente para funcionalidades adicionais   | Médio       | Priorizar os requisitos classificados como Must e deixar os requisitos Could para depois.                             |
+
+---
+
+## 14. Como vamos orientar a implementação com IA
+
+A implementação usa o **Gemini no Android Studio**. Este PRD é o documento que diz à IA o que construir. Quanto mais preciso ele estiver, menos a IA deverá inventar funcionalidades ou estruturas que não foram definidas pelo grupo.
+**Recursos que vamos usar:**
+
+- (X) Chat
+- (X) Agent Mode
+- (X) Explain Code
+- (X) Ask Gemini no Logcat
+- (X) Generate Unit Tests
+- (X) Transform UI
+
+**Regras que colocamos no `AGENTS.md`:**
+
+- Não criar funcionalidades que não estejam definidas no PRD sem autorização do grupo.
+- Explicar alterações importantes antes de modificar partes estruturais do projeto.
+- Manter a arquitetura, organização de pastas e tecnologias definidas pelo grupo.
+- Priorizar código simples e compatível com o nível de conhecimento dos integrantes.
+- Não substituir uma tecnologia ou biblioteca definida no PRD sem justificar a alteração.
+- Testar as funcionalidades antes de considerar uma tarefa concluída.
+
+**Divisão do perímetro explicável — quem responde por explicar o quê na apresentação:**
+
+| **Parte do código**                             | **Responsável** |
+| ----------------------------------------------- | --------------- |
+| Telas (`ui/`)                                   | Thales          |
+| Dados (`data/`)                                 | Abner           |
+| Identidade visual e recursos                    | Sara            |
+| Build, testes, documentação e artefatos de loja | Leticia         |
+
+Todos os integrantes poderão contribuir com código. A divisão representa principalmente a responsabilidade de acompanhamento e explicação de cada área.
+**Decisões que o grupo tomou contra a sugestão da IA:**
+
+- Paleta de cores proposta. 
+
+---
+
+## 15. Histórico de versões deste documento
+
+| **Versão** | **Data**   | **Autor**     | **O que mudou**                                      |
+| ---------- | ---------- | ------------- | ---------------------------------------------------- |
+| 1.0        | 23/09/2026 | Grupo STL + A | Estrutura inicial do PRD adaptada ao modelo oficial. |
+| <br>       | <br>       | <br>          | <br>                                                 |
