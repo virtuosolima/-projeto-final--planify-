@@ -144,6 +144,7 @@ Ana Cláudia, dona de um salão de beleza.
         └── acessa Clientes → [Lista de Clientes]
                                       │
                                       └── Adicionar → [Cadastro de Cliente]
+```
 | **Tela**                | **O que mostra**                                                                                                              | **Ações disponíveis**                                                                 |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | Principal               | Resumo mensal, atendimentos, faturamento, clientes, média, gráfico por dia da semana, horas trabalhadas e clientes atendidos. | Navegar entre meses, visualizar estatísticas, acessar compromisso e acessar clientes. |
