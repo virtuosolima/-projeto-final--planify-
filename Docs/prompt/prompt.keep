@@ -1,1 +1,302 @@
-Onde ficaram arquivamos os prompts utilizados com a IA, introduções e contextos.
+**Prompt para as telas do Planify**
+
+Crie a interface de um aplicativo Android chamado Planify, voltado para pequenos empreendedores e profissionais autônomos que precisam organizar clientes, serviços, compromissos e resultados financeiros em um único aplicativo.
+
+O aplicativo deve transmitir uma sensação de organização, praticidade, profissionalismo e simplicidade. A interface deve parecer um aplicativo real desenvolvido para uso cotidiano por empreendedores, e NÃO uma interface genérica ou visualmente “feita por IA”.
+
+1. Objetivo do aplicativo
+
+O Planify permite que o usuário:
+
+* cadastre e consulte clientes;
+* cadastre e gerencie serviços e seus preços;
+* crie, edite e exclua compromissos;
+* vincule compromissos a clientes e serviços;
+* registre o valor de cada atendimento;
+* configure lembretes;
+* visualize sua agenda diária;
+* acompanhe indicadores financeiros mensais.
+
+O aplicativo deve funcionar como uma ferramenta de organização profissional, com foco em rapidez e facilidade de uso.
+
+2. Público
+
+O público principal são pequenos empreendedores e profissionais autônomos, aproximadamente entre 25 e 45 anos, como:
+
+* cabeleireiros;
+* manicures;
+* barbeiros;
+* personal trainers;
+* consultores;
+* prestadores de serviços locais.
+
+A interface deve ser profissional, mas não corporativa demais. Deve ser acolhedora, clara e prática.
+
+3. Identidade visual
+
+A cor principal definida para o aplicativo é:
+
+Navy: #010736
+
+Utilize essa cor como elemento principal da identidade visual.
+
+A interface deve utilizar:
+
+* bastante espaço em branco;
+* hierarquia visual clara;
+* cards para informações importantes;
+* cantos levemente arredondados;
+* tipografia moderna e legível;
+* ícones simples e consistentes;
+* botões claramente identificáveis;
+* contraste adequado;
+* poucos elementos decorativos.
+
+Evite:
+
+* excesso de gradientes;
+* excesso de sombras;
+* interfaces excessivamente coloridas;
+* elementos 3D;
+* aparência futurista;
+* excesso de animações;
+* visual genérico de dashboard;
+* elementos que façam o aplicativo parecer um protótipo automático de IA.
+
+O resultado deve parecer um produto real, simples e profissional.
+
+4. Telas principais
+
+Crie as seguintes telas:
+
+Tela 1 — Principal / Agenda e Resumo
+
+Esta é a tela inicial do aplicativo.
+
+Deve apresentar:
+
+* nome Planify;
+* mês selecionado;
+* indicadores mensais;
+* calendário ou navegação entre os dias;
+* compromissos do dia;
+* acesso rápido para criar um novo compromisso;
+* acesso à área de clientes;
+* acesso à área de serviços.
+
+Os indicadores mensais são:
+
+* Atendimentos — quantidade de compromissos no mês;
+* Faturamento — soma dos valores dos compromissos;
+* Clientes — quantidade de clientes únicos atendidos no mês;
+* Média — faturamento dividido pela quantidade de atendimentos.
+
+A agenda deve mostrar os compromissos do dia selecionado.
+
+Quando não houver compromissos, mostrar:
+
+“Nenhum compromisso registrado para este dia.”
+
+Tela 2 — Lista de Clientes
+
+Deve apresentar os clientes cadastrados.
+
+Cada cliente deve mostrar pelo menos:
+
+* nome;
+* telefone.
+
+Deve existir uma ação clara para:
+
+* adicionar cliente;
+* editar cliente;
+* excluir cliente.
+
+A lista deve ser limpa e fácil de percorrer.
+
+Tela 3 — Cadastro de Cliente
+
+Formulário para cadastrar um cliente.
+
+Campos:
+
+* Nome;
+* Telefone.
+
+Ações:
+
+* Salvar;
+* Voltar/Cancelar.
+
+Se um campo obrigatório estiver vazio, utilizar a mensagem:
+
+“Preencha os campos obrigatórios antes de salvar.”
+
+Tela 4 — Catálogo de Serviços
+
+Deve apresentar os serviços cadastrados.
+
+Cada serviço deve mostrar:
+
+* nome;
+* preço padrão.
+
+Deve existir uma ação clara para:
+
+* adicionar serviço;
+* editar serviço;
+* excluir serviço.
+
+Tela 5 — Cadastro de Serviço
+
+Formulário para cadastrar um serviço.
+
+Campos:
+
+* Nome do serviço;
+* Preço.
+
+Ações:
+
+* Salvar;
+* Voltar/Cancelar.
+
+Tela 6 — Cadastro de Compromisso
+
+Tela para criar um novo compromisso.
+
+Deve permitir selecionar/preencher:
+
+* Cliente;
+* Serviço;
+* Data;
+* Horário;
+* Valor;
+* Lembrete.
+
+As opções de lembrete devem incluir:
+
+* 15 minutos antes;
+* 1 hora antes;
+* 1 dia antes.
+
+O valor do compromisso deve ser editável, mesmo quando existir um preço padrão associado ao serviço.
+
+Ao salvar, o compromisso deve aparecer na agenda e seu valor deve contribuir para o faturamento mensal.
+
+5. Navegação
+
+Fluxo principal:
+
+Principal → Clientes → Lista de Clientes → Adicionar → Cadastro de Cliente → Salvar → Lista de Clientes
+
+Principal → Serviços → Catálogo de Serviços → Adicionar → Cadastro de Serviço → Salvar → Catálogo de Serviços
+
+Principal → Novo Agendamento → Cadastro de Compromisso → Salvar → Principal
+
+A partir da tela Principal também deve ser possível:
+
+* navegar entre dias;
+* visualizar compromissos;
+* acessar clientes;
+* acessar serviços;
+* criar novo compromisso.
+
+Não criar uma tela separada de detalhes de compromisso neste primeiro momento. A interação de detalhes/edição pode ser representada por uma interface adequada dentro do fluxo existente.
+
+6. Estados e dados de demonstração
+
+A interface deve ser funcional visualmente e apresentar dados fictícios realistas para demonstrar como o aplicativo funciona.
+
+Utilize exemplos como:
+
+Clientes
+
+* Ana Carolina
+* Mariana Souza
+* João Pedro
+
+Serviços
+
+* Corte feminino
+* Manicure
+* Design de sobrancelhas
+
+Compromissos
+
+* cliente + serviço + horário + valor.
+
+Os dados são apenas mock data para demonstração e devem deixar claro como o aplicativo ficará quando estiver preenchido.
+
+Também deve ser possível visualizar os estados vazios, principalmente:
+
+“Nenhum compromisso registrado para este dia.”
+
+7. Comportamentos importantes
+
+Para exclusões, apresentar confirmação:
+
+“Tem certeza que deseja excluir este registro?”
+
+Para erro de salvamento:
+
+“Não foi possível salvar os dados. Tente novamente.”
+
+Quando o compromisso for salvo, mas o lembrete não puder ser ativado:
+
+“Compromisso salvo, mas o lembrete não pôde ser ativado.”
+
+8. Direção geral da interface
+
+Priorize:
+
+clareza → organização → rapidez → profissionalismo
+
+O usuário deve conseguir abrir o aplicativo e entender imediatamente:
+
+1. quanto realizou no mês;
+2. quanto faturou;
+3. quantos clientes atendeu;
+4. quais são seus compromissos de hoje;
+5. como criar um novo compromisso.
+
+A interface deve parecer pronta para um produto real, e não apenas uma coleção de telas bonitas.
+
+9. Importante
+
+Não invente funcionalidades que não estejam descritas neste briefing.
+
+Não adicionar:
+
+* pagamentos online;
+* chat;
+* mapas/localização;
+* sincronização em nuvem;
+* funcionalidades de rede social;
+* funcionalidades relacionadas a animais ou pets.
+
+O aplicativo deve permanecer focado em clientes, serviços, compromissos, lembretes e acompanhamento financeiro.
+
+10. Implementação visual
+
+Crie as telas com consistência visual entre si.
+
+Todos os botões, campos, cards, listas, ícones, cabeçalhos e estados vazios devem seguir o mesmo sistema visual.
+
+O resultado final deve ser:
+
+* moderno;
+* profissional;
+* simples;
+* intuitivo;
+* responsivo;
+* visualmente consistente;
+* com aparência de aplicativo comercial real.
+
+Não produzir um design excessivamente genérico ou com aparência de template de IA.
+
+11. Referências
+
+Utilize de referências os aplicativos mais requisitados atualmente no meio de organização, como o Notion.
+
+Utilize das Leis de Gestalt, Leis da UX e da Neuroestética na criação da interface, buscando o visual mais satisfatório.
