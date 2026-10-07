@@ -23,5 +23,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "planify"
-include(":app")
- 
+// Mudando de :app para :src para atender ao requisito do professor
+include(":src")
