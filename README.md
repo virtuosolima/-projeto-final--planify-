@@ -1,4 +1,4 @@
-# Planify 🚀
+# Planify 
 
 Projeto final desenvolvido para a disciplina de **Desenvolvimento para Dispositivos Móveis**.
 
