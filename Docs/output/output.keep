@@ -1,1 +1,398 @@
-O plano geral deve ser enviado para esta pasta, output com formato padrão.
+Plano Geral — Planify
+
+Projeto: Planify
+Grupo: STL + A (Grupo 01)
+Autores: Thales, Abner, Sara e Letícia
+Versão: 1.2
+Última atualização: 07/10/2026
+Status: Em revisão
+
+1. Visão Geral
+
+Visão do produto
+
+O Planify é um aplicativo desenvolvido para ajudar empreendedores e profissionais autônomos a organizar clientes, serviços, horários e resultados financeiros em um único lugar.
+
+O aplicativo funcionará de forma offline, utilizando Room para persistência local dos dados.
+
+Público-alvo
+
+Pequenos empreendedores e profissionais autônomos, principalmente entre 25 e 45 anos.
+
+Exemplos:
+
+* Cabeleireiros;
+* Manicures;
+* Barbeiros;
+* Personal trainers;
+* Consultores;
+* Prestadores de serviços locais.
+
+Usuário de referência
+
+Ana Cláudia, proprietária de um salão.
+
+Pitch / História de uso
+
+Às 19h, Ana abre o Planify e visualiza o resumo mensal. Ela verifica seus agendamentos e seu faturamento, acessa a área de clientes e cadastra um novo cliente. Em seguida, seleciona um serviço do catálogo e cria um agendamento informando horário e valor. Um lembrete é configurado automaticamente para uma hora antes.
+
+⸻
+
+2. Objetivos da Versão 1
+
+* Registrar e consultar clientes;
+* Gerenciar um catálogo de serviços com nomes e preços;
+* Criar, editar, excluir e acompanhar agendamentos vinculados a clientes e serviços;
+* Registrar valores dos agendamentos e lembretes;
+* Exibir um resumo mensal com indicadores de atendimentos e faturamento.
+
+Fora do escopo
+
+A versão 1 não terá:
+
+* Sincronização com a nuvem;
+* Pagamentos online reais;
+* Chat;
+* Mapas/localização.
+
+⸻
+
+3. Requisitos Funcionais
+
+RF01 — Resumo mensal
+
+Permitir a visualização do mês selecionado, mostrando a quantidade de agendamentos e o faturamento médio.
+
+RF02 — Cadastro de clientes
+
+Permitir cadastrar clientes com nome e telefone.
+
+Os clientes cadastrados devem aparecer em uma lista e poder ser selecionados durante a criação de um agendamento.
+
+RF03 — Catálogo de serviços
+
+Permitir cadastrar serviços com nome e preço padrão.
+
+RF04 — Agendamentos
+
+Permitir criar agendamentos vinculados a clientes e serviços.
+
+O agendamento deve possuir os dados necessários e aparecer na agenda do dia.
+
+RF05 — Valor do agendamento
+
+O valor informado em um agendamento deve ser considerado no cálculo do faturamento mensal.
+
+RF06 — Edição e exclusão
+
+Permitir editar e excluir clientes, serviços e agendamentos.
+
+RF07 — Lembretes
+
+Permitir configurar lembretes locais com antecedência selecionável:
+
+* 15 minutos;
+* 1 hora;
+* 1 dia.
+
+⸻
+
+4. Indicadores Mensais
+
+O resumo mensal deve apresentar:
+
+* Atendimentos: quantidade de agendamentos realizados no mês;
+* Faturamento: soma dos valores dos agendamentos no mês;
+* Clientes: quantidade de clientes únicos atendidos no mês;
+* Média: faturamento dividido pela quantidade de atendimentos.
+
+⸻
+
+5. Requisitos Não Funcionais
+
+* O aplicativo não deve apresentar falhas durante o uso normal;
+* Os dados devem permanecer salvos localmente utilizando Room;
+* O aplicativo deve funcionar offline;
+* Os erros devem ser tratados e apresentados ao usuário;
+* minSdk: 24;
+* targetSdk: 35;
+* A estrutura do projeto deve ser organizada profissionalmente dentro de src/.
+
+⸻
+
+6. Telas e Navegação
+
+6.1 Principal — Agenda / Resumo
+
+Deve apresentar:
+
+* Resumo mensal;
+* Indicadores;
+* Agendamentos do dia.
+
+Ações:
+
+* Navegar entre os dias;
+* Visualizar detalhes;
+* Adicionar novo agendamento;
+* Acessar clientes;
+* Acessar serviços.
+
+6.2 Lista de Clientes
+
+Deve permitir:
+
+* Visualizar clientes cadastrados;
+* Adicionar clientes;
+* Selecionar clientes para agendamentos.
+
+6.3 Cadastro de Cliente
+
+Campos:
+
+* Nome;
+* Telefone.
+
+Ações:
+
+* Preencher dados;
+* Salvar cadastro.
+
+6.4 Catálogo de Serviços
+
+Deve apresentar a lista de serviços e seus preços.
+
+Ações:
+
+* Adicionar;
+* Editar;
+* Excluir.
+
+6.5 Cadastro de Compromisso
+
+Campos:
+
+* Cliente;
+* Serviço;
+* Data;
+* Horário;
+* Valor;
+* Lembrete.
+
+Ações:
+
+* Vincular entidades;
+* Preencher o horário;
+* Salvar o compromisso.
+
+Estado vazio
+
+Quando não houver compromissos para o dia selecionado, exibir:
+
+Nenhum compromisso registrado para este dia.
+
+⸻
+
+7. Fluxo de Navegação
+
+Principal → Clientes
+
+Principal → Lista de Clientes → Adicionar → Cadastro de Cliente
+
+Após salvar, o usuário retorna à lista de clientes.
+
+Principal → Serviços
+
+Principal → Catálogo de Serviços → Adicionar → Cadastro de Serviço
+
+Após salvar, o usuário retorna ao catálogo.
+
+Principal → Novo Agendamento
+
+Principal → Novo Agendamento → Formulário de Compromisso
+
+Após salvar, o novo compromisso deve aparecer na agenda e seu valor deve ser considerado no faturamento mensal.
+
+⸻
+
+8. Entidades e Dados
+
+Cliente
+
+Campo	Tipo	Regra
+id	Long	Chave primária, autogerada
+nome	String	Obrigatório
+telefone	String	Obrigatório
+
+Serviço
+
+Campo	Tipo	Regra
+id	Long	Chave primária, autogerada
+nome	String	Obrigatório
+preco	Double	Obrigatório
+
+Compromisso
+
+Campo	Tipo	Regra
+id	Long	Chave primária, autogerada
+clienteId	Long	Chave estrangeira
+servicoId	Long	Chave estrangeira
+dataHora	Long	Timestamp
+valor	Double	Obrigatório
+
+Lembrete
+
+Campo	Tipo	Regra
+id	Long	Chave primária, autogerada
+compromissoId	Long	Chave estrangeira
+antecedenciaMinutos	Int	Tempo de antecedência
+ativo	Boolean	Indica se está ativo
+
+Operações
+
+As entidades devem permitir:
+
+* Inserção;
+* Listagem;
+* Atualização;
+* Exclusão.
+
+⸻
+
+9. Tecnologias
+
+O projeto utilizará:
+
+* Kotlin;
+* Jetpack Compose;
+* Room;
+* Material 3;
+* Navigation Compose;
+* Coroutines;
+* Flow;
+* AlarmManager / WorkManager.
+
+minSdk: 24
+targetSdk: 35
+
+⸻
+
+10. Tratamento de Erros
+
+Campos obrigatórios
+
+Preencha os campos obrigatórios antes de salvar.
+
+Falha ao salvar no banco
+
+Não foi possível salvar os dados. Tente novamente.
+
+Falha na ativação do lembrete
+
+Compromisso salvo, mas o lembrete não pôde ser ativado.
+
+Confirmação de exclusão
+
+Tem certeza que deseja excluir este registro?
+
+⸻
+
+11. Identidade Visual
+
+Nome do aplicativo
+
+Planify
+
+O nome deve ser definido em strings.xml.
+
+Cor principal
+
+#010736
+
+Direção visual
+
+A interface deve apresentar uma aparência profissional, limpa e adequada ao público-alvo do aplicativo.
+
+⸻
+
+12. Configuração do Projeto
+
+applicationId:
+
+br.edu.ifpe.planify
+
+versionName: 1.0
+versionCode: 1
+
+⸻
+
+13. Imagens de Referência
+
+As imagens de referência das telas estão localizadas em:
+
+docs/telas/01-principal.png
+docs/telas/02-compromisso.png
+docs/telas/03-clientes.png
+docs/telas/04-cadastro-cliente.png
+
+⸻
+
+14. Testes
+
+T1 — Cadastro de cliente
+
+Verificar o cadastro e a consulta de clientes.
+
+T2 — Cadastro de compromisso
+
+Verificar a criação de compromissos e sua relação com os dados cadastrados.
+
+T3 — Lembrete
+
+Verificar o funcionamento dos lembretes.
+
+T4 — Persistência
+
+Verificar se os dados permanecem salvos após o encerramento e reabertura do aplicativo.
+
+⸻
+
+15. Divisão das Entidades
+
+* Cliente: Thales
+* Compromisso: Abner
+* Serviço: Sara
+* Lembrete: Letícia
+
+⸻
+
+16. Cronograma
+
+Marco	Entrega	Data
+M3	Base funcional	21/10
+M4	Room completo	11/11
+M5	Identidade visual + APK testado	25/11
+M6	AAB + material para publicação + README	02/12
+Final	Entrega final	10/12
+
+⸻
+
+17. Implementação com IA
+
+A implementação será auxiliada pelo Gemini no Android Studio.
+
+As regras do projeto deverão ser definidas por meio dos arquivos de configuração/AGENTS correspondentes.
+
+⸻
+
+18. Histórico de Versões
+
+Versão 1.1
+
+A versão anterior possuía quatro entidades, incluindo a entidade Pet.
+
+Versão 1.2
+
+A entidade Pet foi removida.
+
+O projeto retornou ao foco geral de agenda e gestão financeira para empreendedores e profissionais autônomos, sendo adicionada a entidade Lembrete.
