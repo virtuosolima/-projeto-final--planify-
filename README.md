@@ -2,7 +2,7 @@
 
 Projeto final desenvolvido para a disciplina de **Desenvolvimento para Dispositivos Móveis**.
 
-O **Planify** é um sistema completo de agendamento e gestão para Petshops, focado em organização de serviços, controle de clientes e gerenciamento de pets.
+O **Planify** é um sistema de agendamento e organização de compromissos para pequenos empreendedores e autônomos, com foco em controle de clientes, serviços e horários.
 
 ## 📂 Estrutura do Projeto
 
@@ -12,14 +12,14 @@ Para facilitar a avaliação, o projeto foi organizado seguindo a solicitação 
 
 ## 🛠 Membros e Entidades
 O projeto é dividido em 4 pilares fundamentais, cada um sob responsabilidade de um membro:
-- **Clientes**: Gestão de tutores.
-- **Pets**: Gestão dos animais de estimação.
-- **Serviços**: Catálogo de banho, tosa e consultas.
-- **Compromissos**: Agenda e status de pagamento.
+- **Clientes**: Gestão dos clientes atendidos pelo empreendedor.
+- **Compromissos**: Agenda, horários e status (pendente, em andamento, concluído, cancelado).
+- **Serviços**: Catálogo de serviços oferecidos pelo empreendedor.
+- **Lembretes**: Notificações automáticas agendadas para cada compromisso.
 
 ## 🚀 Tecnologias Utilizadas
 - Jetpack Compose (UI)
 - Room Database (Persistência Local)
 - Coroutines & Flow (Concorrência)
 - Navigation Compose (Fluxo de Telas)
-- Retrofit (Rede/API)
+- AlarmManager / WorkManager (Lembretes locais)
