@@ -7,16 +7,14 @@ Página
 100%
 # 🎯 Canvas do Projeto Final — App Android
 
-> **Como usar:** este é o primeiro documento do projeto. Preencha em grupo, em uma única aula, **antes de escrever qualquer linha de código**. Cada bloco tem no máximo 5 linhas — se não couber, o projeto está grande demais.
-> Depois de preenchido e validado pelo professor, ele vira a base do [`PRD.md`](PRD.md).
 
 | | |
 |---|---|
 | **Grupo nº** | |
 | **Integrantes (3 a 4)** | |
 | **Turma** | 3º ano — Ensino Médio |
-| **Repositório** | `https://github.com/____/____` |
-| **Data de preenchimento** | ___/___/2026 |
+| **Repositório** | `https://github.com/virtuosolima/` |
+| **Data de preenchimento** | 09/09/2026 |
 | **Entrega final** | **10/12/2026** |
 
 ---
