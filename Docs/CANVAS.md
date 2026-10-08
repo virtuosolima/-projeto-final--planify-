@@ -39,7 +39,7 @@ Para quem é o app? Sejam específicos (idade, contexto, com que frequência usa
 
 - **Perfil principal:** Pequenos empreendedores e autônomos, entre 25 e 45 anos, que atendem clientes ou gerenciam compromissos por conta própria e não têm equipe administrativa — como cabeleireiros, personal trainers, consultores, prestadores de serviço em geral, donos de petshops e negócios locais. 
 - **Quando/onde usam:** Usam o app diariamente, principalmente pela manhã (para revisar os compromissos do dia) e ao longo do dia sempre que um novo horário é marcado ou remarcado — seja no próprio local de trabalho, entre atendimentos, ou em qualquer lugar pelo celular, já que a rotina dessas pessoas raramente é em frente a um computador. 
-- **Uma pessoa real que testaria o app:**  Ana Cláudia — mãe da aluna Letícia Gabriela, possui um salão de beleza e petshop. 
+- **Uma pessoa real que testaria o app:**  Ana Cláudia — mãe da aluna Letícia Gabriela, possui um salão de beleza. 
 
 
 ---
