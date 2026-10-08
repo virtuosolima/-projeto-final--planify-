@@ -236,7 +236,7 @@ Também deve ser possível visualizar os estados vazios, principalmente:
 
 Para exclusões, apresentar confirmação:
 
-“Tem certeza que deseja excluir este registro?”
+“deseja excluir este registro?”
 
 Para erro de salvamento:
 
@@ -293,7 +293,7 @@ O resultado final deve ser:
 * visualmente consistente;
 * com aparência de aplicativo comercial real.
 
-Não produzir um design excessivamente genérico ou com aparência de template de IA.
+Não produzir um design excessivamente genérico ou com aparência de template visualmen de IA.
 
 11. Referências
 
