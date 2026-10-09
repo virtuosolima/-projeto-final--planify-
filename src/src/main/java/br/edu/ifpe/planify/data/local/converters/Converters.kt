@@ -1,6 +1,7 @@
 package br.edu.ifpe.planify.data.local.converters
 
 import androidx.room.TypeConverter
+import br.edu.ifpe.planify.model.PaymentStatus
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
