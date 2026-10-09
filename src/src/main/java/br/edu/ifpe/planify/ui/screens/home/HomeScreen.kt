@@ -19,21 +19,42 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.runtime.*
+import kotlinx.coroutines.launch
 import br.edu.ifpe.planify.ui.components.SummaryCard
 import br.edu.ifpe.planify.ui.theme.PrimaryBlue
 import br.edu.ifpe.planify.ui.theme.TextSecondary
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import br.edu.ifpe.planify.model.Compromisso
+import br.edu.ifpe.planify.ui.viewmodel.ClienteViewModel
+import br.edu.ifpe.planify.ui.viewmodel.CompromissoViewModel
+import br.edu.ifpe.planify.ui.viewmodel.ServicoViewModel
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
+    compromissoViewModel: CompromissoViewModel,
+    clienteViewModel: ClienteViewModel,
+    servicoViewModel: ServicoViewModel,
     onNavigateToNovoCompromisso: () -> Unit,
     onNavigateToClientes: () -> Unit,
     onNavigateToServicos: () -> Unit
 ) {
+    val compromissos by compromissoViewModel.compromissosForDate.collectAsState()
+    val allCompromissos by compromissoViewModel.allCompromissos.collectAsState()
+    val allClientes by clienteViewModel.allClientes.collectAsState()
+    val selectedDate by compromissoViewModel.selectedDate.collectAsState()
+    val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
+
     Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
                 title = { Text("Planify", color = Color.White, fontWeight = FontWeight.Bold) },
@@ -81,12 +102,19 @@ fun HomeScreen(
                 .background(Color(0xFFF8F9FA))
         ) {
             // Summary Section
-            SummarySection()
+            SummarySection(
+                totalCompromissos = allCompromissos.size,
+                totalClientes = allClientes.size,
+                valorTotal = allCompromissos.sumOf { it.valor }
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
             // Date Picker Section
-            DatePickerSection()
+            DatePickerSection(
+                selectedDate = selectedDate,
+                onDateSelected = { compromissoViewModel.selectDate(it) }
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -100,13 +128,33 @@ fun HomeScreen(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            AppointmentsList()
+            AppointmentsList(
+                compromissos = compromissos,
+                onDelete = { compromisso ->
+                    scope.launch {
+                        compromissoViewModel.delete(compromisso)
+                        val result = snackbarHostState.showSnackbar(
+                            message = "Compromisso removido",
+                            actionLabel = "Desfazer",
+                            duration = SnackbarDuration.Short
+                        )
+                        if (result == SnackbarResult.ActionPerformed) {
+                            compromissoViewModel.insert(compromisso)
+                        }
+                    }
+                }
+            )
         }
     }
 }
 
 @Composable
-fun SummarySection() {
+fun SummarySection(
+    totalCompromissos: Int,
+    totalClientes: Int,
+    valorTotal: Double
+) {
+    val media = if (totalCompromissos > 0) valorTotal / totalCompromissos else 0.0
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -114,27 +162,31 @@ fun SummarySection() {
             .padding(16.dp)
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
-            SummaryCard(title = "Total", value = "R$ 1.250,00", modifier = Modifier.weight(1f))
-            SummaryCard(title = "Atendimentos", value = "24", modifier = Modifier.weight(1f))
+            SummaryCard(title = "Total", value = "R$ %.2f".format(valorTotal), modifier = Modifier.weight(1f))
+            SummaryCard(title = "Atendimentos", value = totalCompromissos.toString(), modifier = Modifier.weight(1f))
         }
         Row(modifier = Modifier.fillMaxWidth()) {
-            SummaryCard(title = "Clientes", value = "18", modifier = Modifier.weight(1f))
-            SummaryCard(title = "Média", value = "R$ 52,08", modifier = Modifier.weight(1f))
+            SummaryCard(title = "Clientes", value = totalClientes.toString(), modifier = Modifier.weight(1f))
+            SummaryCard(title = "Média", value = "R$ %.2f".format(media), modifier = Modifier.weight(1f))
         }
     }
 }
 
 @Composable
-fun DatePickerSection() {
-    val days = (0..14).map { LocalDate.now().plusDays(it.toLong()) }
+fun DatePickerSection(
+    selectedDate: LocalDate,
+    onDateSelected: (LocalDate) -> Unit
+) {
+    val days = (-2..12).map { LocalDate.now().plusDays(it.toLong()) }
     
     LazyRow(
         modifier = Modifier.padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(days) { date ->
-            val isSelected = date == LocalDate.now()
+            val isSelected = date == selectedDate
             Card(
+                onClick = { onDateSelected(date) },
                 colors = CardDefaults.cardColors(
                     containerColor = if (isSelected) PrimaryBlue else Color.White
                 ),
@@ -162,27 +214,70 @@ fun DatePickerSection() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppointmentsList() {
-    val mockAppointments = listOf(
-        MockAppointment("09:00", "Ana Silva", "Corte de Cabelo", "R$ 50,00"),
-        MockAppointment("10:30", "Pedro Santos", "Barba", "R$ 30,00"),
-        MockAppointment("14:00", "Maria Oliveira", "Coloração", "R$ 120,00")
-    )
+fun AppointmentsList(
+    compromissos: List<Compromisso>,
+    onDelete: (Compromisso) -> Unit
+) {
+    if (compromissos.isEmpty()) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Text("Nenhum compromisso para este dia", color = TextSecondary)
+        }
+    } else {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            items(
+                items = compromissos,
+                key = { it.id }
+            ) { appointment ->
+                val dismissState = rememberSwipeToDismissBoxState(
+                    confirmValueChange = { value ->
+                        if (value == SwipeToDismissBoxValue.EndToStart) {
+                            onDelete(appointment)
+                            true
+                        } else {
+                            false
+                        }
+                    }
+                )
 
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        items(mockAppointments) { appointment ->
-            AppointmentItem(appointment)
+                SwipeToDismissBox(
+                    state = dismissState,
+                    enableDismissFromStartToEnd = false,
+                    backgroundContent = {
+                        val color = when (dismissState.dismissDirection) {
+                            SwipeToDismissBoxValue.EndToStart -> Color.Red
+                            else -> Color.Transparent
+                        }
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(color, RoundedCornerShape(12.dp))
+                                .padding(horizontal = 20.dp),
+                            contentAlignment = Alignment.CenterEnd
+                        ) {
+                            Icon(
+                                Icons.Default.Delete,
+                                contentDescription = "Excluir",
+                                tint = Color.White
+                            )
+                        }
+                    }
+                ) {
+                    AppointmentItem(appointment)
+                }
+            }
         }
     }
 }
 
 @Composable
-fun AppointmentItem(appointment: MockAppointment) {
+fun AppointmentItem(appointment: Compromisso) {
+    val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
     Card(
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
@@ -195,21 +290,26 @@ fun AppointmentItem(appointment: MockAppointment) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(text = appointment.time, fontWeight = FontWeight.Bold, color = PrimaryBlue)
+                Text(
+                    text = appointment.horarioInicial.format(timeFormatter),
+                    fontWeight = FontWeight.Bold,
+                    color = PrimaryBlue
+                )
             }
             Spacer(modifier = Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text(text = appointment.clientName, fontWeight = FontWeight.Bold)
-                Text(text = appointment.serviceName, color = TextSecondary, fontSize = 14.sp)
+                Text(text = appointment.descricao, fontWeight = FontWeight.Bold)
+                Text(
+                    text = if (appointment.temLembrete) "Com lembrete" else "Sem lembrete",
+                    color = TextSecondary,
+                    fontSize = 14.sp
+                )
             }
-            Text(text = appointment.value, fontWeight = FontWeight.Bold, color = PrimaryBlue)
+            Text(
+                text = "R$ %.2f".format(appointment.valor),
+                fontWeight = FontWeight.Bold,
+                color = PrimaryBlue
+            )
         }
     }
 }
-
-data class MockAppointment(
-    val time: String,
-    val clientName: String,
-    val serviceName: String,
-    val value: String
-)

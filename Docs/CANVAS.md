@@ -4,7 +4,7 @@
 |---|---|
 | **Grupo nº** | 01 |
 | **Integrantes (3 a 4)** | Thales, Abner, Sara e Leticia |
-| **Turma** | 3º ano B — EMI IPI |
+| **Turma** | 3º ano — Ensino Médio |
 | **Repositório** | `https://github.com/virtuosolima/-projeto-final--planify-` |
 | **Data de preenchimento** | 09/09/2026 |
 | **Entrega final** | **10/12/2026** |
@@ -16,14 +16,14 @@
 **Nome do app:** Planify
 
 **Pitch em uma frase:**
-> "O [Planify] ajuda [empreendedores] a [organizar seus horários e compromissos ] sem precisar de [agendas de papel ou vários apps soltos ]."
+> "O [Planify] ajuda [pequenos empreendedores e autônomos] a [organizar seus clientes, pets, serviços e compromissos] sem precisar de [agendas de papel ou vários apps soltos]."
 
 ---
 
 ## 😖 Bloco 2 — Problema
 
 Qual dor real vocês estão resolvendo? Descrevam uma situação concreta que alguém vive hoje.
-- Muitos pequenos empreendedores (donos de salão, loja, prestadores de serviço autônomo, etc.) cuidam sozinhos de vários compromissos ao mesmo tempo: atendimento a clientes, reuniões com fornecedores, horários de entrega, e tarefas pessoais. Como não têm uma secretária ou sistema de agenda profissional, esses horários ficam espalhados entre WhatsApp, papel, cabeça e lembretes soltos no celular. O resultado: compromissos esquecidos, horários que se sobrepõem (marcar dois clientes no mesmo horário, por exemplo), e tempo perdido tentando lembrar o que precisa ser feito no dia.
+- Muitos pequenos empreendedores (donos de salão, loja, prestadores de serviço autônomo, etc.) cuidam sozinhos de vários compromissos ao mesmo tempo: atendimento a clientes, reuniões com fornecedores, horários de entrega, e tarefas pessoais. Como não têm uma secretária ou sistema de agenda profissional, esses horários ficam espalhados entre WhatsApp, papel, cabeça e lembretes soltos no celular. O resultado: compromissos esquecidos, horários que se sobrepõem (marcar dois clientes no mesmo horário, por exemplo), e tempo perdido tentando lembrar o que precisa ser feito no dia. No contexto de petshops, esse problema é agravado pela dificuldade de gerenciar o histórico de cada Pet vinculado ao seu respectivo Cliente.
 
 
 **Como esse problema é resolvido hoje (sem o app)?**
@@ -37,7 +37,7 @@ Qual dor real vocês estão resolvendo? Descrevam uma situação concreta que al
 
 Para quem é o app? Sejam específicos (idade, contexto, com que frequência usariam).
 
-- **Perfil principal:** Pequenos empreendedores e autônomos, entre 25 e 45 anos, que atendem clientes ou gerenciam compromissos por conta própria e não têm equipe administrativa — como cabeleireiros, personal trainers, consultores, prestadores de serviço em geral e donos de pequenos negócios locais. 
+- **Perfil principal:** Pequenos empreendedores e autônomos, entre 25 e 45 anos, que atendem clientes ou gerenciam compromissos por conta própria e não têm equipe administrativa — como cabeleireiros, personal trainers, consultores, prestadores de serviço em geral, donos de petshops e negócios locais. 
 - **Quando/onde usam:** Usam o app diariamente, principalmente pela manhã (para revisar os compromissos do dia) e ao longo do dia sempre que um novo horário é marcado ou remarcado — seja no próprio local de trabalho, entre atendimentos, ou em qualquer lugar pelo celular, já que a rotina dessas pessoas raramente é em frente a um computador. 
 - **Uma pessoa real que testaria o app:**  Ana Cláudia — mãe da aluna Letícia Gabriela, possui um salão de beleza. 
 
@@ -48,12 +48,10 @@ Para quem é o app? Sejam específicos (idade, contexto, com que frequência usa
 
 Descreva o que a **tela principal** mostra e o que o usuário consegue fazer nela.
 
-- **A tela principal lista:** os compromissos organizados por data, com foco no dia atual por padrão (podendo o usuário navegar para dias anteriores ou futuros, por exemplo por um calendário ou setas de navegação). Para cada compromisso, a lista exibe: o horário de início (e término, se preenchido), o título/nome do cliente, o serviço solicitado, um indicador visual de status (pendente, em andamento, concluído ou cancelado) e um ícone pequeno indicando se há lembrete ativo. Os compromissos aparecem ordenados cronologicamente, do mais cedo para o mais tarde, e os que já passaram do horário (e não foram marcados como concluídos) ficam visualmente diferenciados — por exemplo, em cinza ou com um aviso de atraso. Se não houver nenhum compromisso cadastrado para o dia selecionado, a tela mostra uma mensagem simples incentivando o usuário a adicionar o primeiro compromisso.
+- **A tela principal lista:** os compromissos organizados por data, com foco no dia atual por padrão (podendo o usuário navegar para dias anteriores ou futuros, por exemplo por um calendário ou setas de navegação). Para cada compromisso, a lista exibe: o horário de início, o Nome do Pet, o Serviço (ex: Banho), o nome do Cliente e um indicador visual de status de pagamento (Pago ou Pendente). Os compromissos aparecem ordenados cronologicamente, do mais cedo para o mais tarde, e os que já passaram do horário (e não foram marcados como concluídos) ficam visualmente diferenciados — por exemplo, em cinza ou com um aviso de atraso. Se não houver nenhum compromisso cadastrado para o dia selecionado, a tela mostra uma mensagem simples incentivando o usuário a adicionar o primeiro compromisso.
 
-- **A ação principal do usuário é:** adicionar um novo compromisso preenchendo um formulário simples com os seguintes campos: nome do cliente (ou descrição do compromisso, para quem não atende cliente diretamente), serviço (selecionado do catálogo), data, horário de início (e opcionalmente horário de término), um campo de observações livres (ex: "levar orçamento", "primeira consulta") e a opção de ativar um lembrete, escolhendo com quanto tempo de antecedência quer ser avisado (ex: 15 min, 1h, 1 dia antes).
-- **Depois de agir, o usuário vê:** o retorno automático para a tela principal, onde o novo compromisso já aparece na posição correta da lista, ordenado por horário, com um aviso curto e discreto (toast ou snackbar) confirmando que foi salvo. Se o compromisso for para o dia atual, ele aparece destacado visualmente (ex: cor diferente ou ícone de "próximo"). Caso o lembrete tenha sido ativado, o sistema agenda a notificação local automaticamente, sem exigir nenhuma ação extra do usuário.
-Observação: a recorrência de compromissos e a detecção automática de conflito de horário ficaram fora do MVP (ver Bloco 6) — podem entrar como evolução futura. 
-
+- **A ação principal do usuário é:** adicionar um novo compromisso preenchendo um formulário que vincula: o Cliente, o Pet (vinculado ao cliente), o Serviço (do catálogo), a data e o horário.
+- **Depois de agir, o usuário vê:** o retorno automático para a tela principal, onde o novo compromisso já aparece na posição correta da lista, ordenado por horário. Caso o lembrete tenha sido ativado, o sistema agenda a notificação local automaticamente, sem exigir nenhuma ação extra do usuário.
 
 ---
 
@@ -63,22 +61,21 @@ Máximo de **4 funcionalidades**. Se tiver mais, corte. Lembre: *qualidade acima
 
 | # | Funcionalidade | Essencial? | Quem faz |
 |---|---|---|---|
-| F1 | Gestão de Clientes (Adicionar, editar e excluir) | Sim | Thales |
-| F2 | Catálogo de Serviços (Listagem e definição de valores) | Sim | Sara |
-| F3 | Agendamento de Compromissos (Vinculação e ordenação por horário) | Sim | Abner |
-| F4 | Sistema de Notificação e Lembrete automático | Sim | Leticia |
+| F1 | Gestão de Clientes e Pets (Cadastro e vínculo) | Sim | Thales (Cliente) / Leticia (Pet) |
+| F2 | Catálogo de Serviços com preços pré-definidos | Sim | Sara (Servico) |
+| F3 | Agendamento de Compromissos vinculando Pet e Serviço | Sim | Abner (Compromisso) |
+| F4 | Lembrete automático e Status de Pagamento | Sim | Todos |
 
 ---
 
 ## 🚫 Bloco 6 — Fora do escopo
 
-O que o app **não** vai fazer nesta entrega. Escrever isso aqui protege vocês de perder o prazo.
+O que o app ** não** vai fazer nesta entrega. Escrever isso aqui protege vocês de perder o prazo.
 
-- ❌ Login/cadastro de usuário e múltiplas contas — o app funciona com um único usuário local, sem necessidade de criar conta.
-- ❌ Sincronização em nuvem entre dispositivos — os compromissos ficam salvos apenas no banco de dados local do aparelho (Room), sem backup automático.
-- ❌ Notificações push enviadas por servidor externo — apenas lembretes locais agendados pelo próprio app (AlarmManager/WorkManager) está no escopo.
-- ❌ Detecção automática de conflito de horários, chat, mapa e pagamento — não fazem parte desta entrega.
-
+- ❌ Login/cadastro de usuário e múltiplas contas — o app funciona com um único usuário local.
+- ❌ Sincronização em nuvem entre dispositivos — dados salvos apenas no banco de dados local (Room).
+- ❌ Notificações push enviadas por servidor externo — apenas lembretes locais agendados pelo AlarmManager.
+- ❌ Pagamento real via PIX/Cartão — apenas marcação visual de status.
 
 ---
 
@@ -86,25 +83,23 @@ O que o app **não** vai fazer nesta entrega. Escrever isso aqui protege vocês 
 
 Marque **uma** opção (as três valem a mesma nota):
 
-- [x] **Opção A — Room:** dados salvos no próprio celular (agenda, clientes, serviços e lembretes)
+- [x] **Opção A — Room:** dados salvos no próprio celular (lista de clientes, pets, serviços e compromissos)
 
-**Opção escolhida: A — Room (dados salvos no próprio celular).**
-Faz sentido para o Planify porque os compromissos são dados pessoais do usuário, não precisam vir de uma API externa, e o app já foi definido (Bloco 6) como local, sem sincronização em nuvem.
 **Bibliotecas que o grupo vai usar:**
-- Room (banco de dados local — tabelas de clientes, compromissos, serviços e lembretes)
-- ViewModel + Flow para observar a lista de compromissos na tela
-- Jetpack Compose para exibir a interface
-- AlarmManager ou WorkManager para agendar os lembretes/notificações locais
-- Navigation Component para navegar entre as telas do app
+- Room (banco de dados local)
+- ViewModel + Flow (para observação de dados)
+- Jetpack Compose (Interface moderna)
+- AlarmManager (para lembretes locais)
+- Navigation Component (fluxo entre telas)
+
 
 ## Tratamento de erros — try/catch
 
 | Pode falhar | O usuário vê a mensagem |
 |---|---|
-| Campo obrigatório em branco (ex: horário não preenchido) | "Preencha o horário do compromisso antes de salvar." |
-| Erro ao inserir/ler no banco Room | "Não foi possível salvar o compromisso. Tente novamente." |
-| Lista de compromissos vazia (não é bem um erro, mas precisa de tratamento) | Mensagem incentivando a cadastrar o primeiro compromisso |
-| Falha ao agendar o lembrete (permissão de notificação negada) | "Não foi possível ativar o lembrete. Verifique as permissões de notificação do app." |
+| Campo obrigatório em branco | "Preencha todos os campos obrigatórios antes de salvar." |
+| Erro ao inserir/ler no banco Room | "Não foi possível salvar os dados. Tente novamente." |
+| Permissão de notificação negada | "Lembrete não ativado. Verifique as permissões de notificação do app." |
 
 ---
 
@@ -114,7 +109,7 @@ Faz sentido para o Planify porque os compromissos são dados pessoais do usuári
 |---|---|
 | Nome exibido (`strings.xml`) | Planify |
 | Cor principal (hex, em `Color.kt`) | `#010736` (Azul Marinho) |
-| Ideia do ícone (512×512) | Um calendário minimalista focado em organização e tempo. |
+| Ideia do ícone (512×512) | Um calendário estilizado com uma pata de pet integrada. |
 | `applicationId` | `br.edu.ifpe.planify` |
 | Versão inicial | `1.0` (versionCode `1`) |
 
@@ -126,8 +121,8 @@ Faz sentido para o Planify porque os compromissos são dados pessoais do usuári
 |---|---|---|
 | Thales | Dev / Telas | Entidade **Cliente** |
 | Abner | Dev / Dados | Entidade **Compromisso** |
-| Sara | Design / Identidade | Entidade **Servico** |
-| Leticia | Doc / Entrega | Entidade **Lembrete** |
+| Sara | Design e Identidade | Entidade **Servico** |
+| Leticia | Doc e Entrega | Entidade **Pet** |
 
 > Todos programam. O "papel" define quem **responde** por aquela parte, não quem trabalha sozinho.
 
@@ -135,10 +130,9 @@ Faz sentido para o Planify porque os compromissos são dados pessoais do usuári
 
 | Risco — o que pode dar errado | Plano B |
 |---|---|
-| Lembretes não dispararem corretamente (limitações do Android) | Testar cedo (a partir do M3) em um celular real, não só no emulador |
-| Atraso na conclusão da camada de dados (Room) | Priorizar F1/F2/F3 antes de qualquer funcionalidade extra |
-| Um integrante ficar sobrecarregado por causa de faltas de outro | Revisar semanalmente quem está travado e redistribuir tarefas pequenas |
-| Conflitos ao subir código pro mesmo arquivo no Git | Cada um trabalha em branch própria e faz pull request antes de mesclar no main |
+| Lembretes não dispararem corretamente | Testar cedo em dispositivos reais e não só no emulador. |
+| Atraso na camada de dados (Room) | Priorizar o CRUD de Clientes e Pets antes de avançar na agenda. |
+| Conflitos frequentes no Git | Usar branches específicas (feat/) e Pull Requests rigorosos. |
 
 ---
 
@@ -149,16 +143,8 @@ A implementação pode ser feita com o **Gemini no Android Studio**. Vocês orie
 **Três regras que vamos escrever no nosso `AGENTS.md`** *(o arquivo que diz à IA como trabalhar no nosso projeto)*:
 
 1. Seguir rigorosamente a estrutura de pastas solicitada (src/ na raiz).
-2. Não implementar funcionalidades extras fora do escopo do PRD.
-3. Explicar a lógica de concorrência e o uso do Room em cada arquivo modificado.
-
-**Combinados do grupo:**
-
-- [x] Ninguém clica *Accept* no Agent Mode sem ler a mudança inteira.
-- [x] Quem aceitou o código escreve o comentário de fronteira do arquivo.
-- [x] Antes de cada marco, revisamos juntos: alguém aqui não entende alguma parte?
-- [x] Nenhuma chave de API ou senha vai para o prompt.
-- Outro combinado nosso: Manter a simplicidade da UI seguindo o Material Design 3.
+2. Explicar a lógica de concorrência (Flow/Coroutines) em cada alteração.
+3. Não implementar funcionalidades extras fora do escopo do PRD.
 
 ---
 
@@ -166,13 +152,11 @@ A implementação pode ser feita com o **Gemini no Android Studio**. Vocês orie
 
 | Marco | Prazo | Como se comprova no GitHub |
 |---|---|---|
-| M1 — Canvas preenchido + repositório criado | 16/09 | `CANVAS.md` no `main` |
-| M2 — PRD aprovado + telas rascunhadas | 30/09 | `PRD.md` + imagens em `docs/` |
-| M3 — Funcionalidade base rodando | 21/10 | tela principal lista dados + 1 ação + try/catch |
-| M4 — Dados completos (Room) e erros tratados | 11/11 | commits da camada de dados |
-| M5 — Identidade visual + .apk de release testado | 25/11 | ícone, cores, .apk testado por 2 pessoas de fora |
-| M6 — .aab + material de loja + README.md | 02/12 | pasta loja/ + README.md completo |
-| Entrega e apresentação | 10/12 | tag v1.0 no repositório |
+| M1 — Canvas preenchido | 16/09 | `CANVAS.md` no `main` |
+| M2 — PRD aprovado | 30/09 | `PRD.md` aprovado |
+| M3 — Funcionalidade base rodando | 21/10 | Tela principal lista dados + 1 ação |
+| M4 — Dados completos (Room) | 11/11 | Commits das 4 entidades na camada de dados |
+| M6 — Entrega final | 02/12 | APK final e README completo |
 
 ---
 
@@ -181,15 +165,11 @@ A implementação pode ser feita com o **Gemini no Android Studio**. Vocês orie
 O grupo só considera o app pronto quando **todas** estas frases forem verdadeiras:
 
 - [x] O app abre e não fecha sozinho depois de 5 minutos de uso.
-- [x] A tela principal mostra dados reais (não texto de exemplo fixo no código).
-- [x] A ação principal funciona e o resultado aparece na tela.
-- [x] Quando algo falha, aparece uma mensagem clara — o app não quebra.
-- [x] O app tem nome, ícone e cor próprios (nada de ícone padrão do Android).
-- [x] Duas pessoas de fora do grupo instalaram o .apk e conseguiram usar sem explicação.
-- [x] O `README.md` explica o que o app faz, com o que foi feito e como gerar o build.
-- [x] O `docs/USO_DE_IA.md` e o `AGENTS.md` estão preenchidos.
-- [x] Cada integrante consegue abrir o projeto e fazer uma mudança pequena sozinho.
-- [x] Todo arquivo nosso tem o comentário de fronteira escrito por nós.
+- [x] A tela principal mostra dados reais (Pet, Serviço, Cliente).
+- [x] CRUD completo das 4 entidades funcionando.
+- [x] O app tem nome, ícone e cor (#010736) próprios.
+- [x] O `README.md` explica o funcionamento e o build.
+- [x] O `agents.md` está preenchido e refletido no projeto.
 
 ---
 
