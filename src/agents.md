@@ -5,16 +5,16 @@
 Cada membro será responsável por uma entidade core do sistema, implementando seu **Model, DAO, Repository e UI**:
 
 1.  **Membro A: Agente de Clientes (`model/Cliente.kt`)**
-    *   Foco: Cadastro de clientes e informações de contato.
+    *   Foco: Cadastro de clientes, edição de perfis e informações de contato.
 2.  **Membro B: Agente de Agendamentos (`model/Compromisso.kt`)**
-    *   Foco: Gestão de datas e horários.
+    *   Foco: Gestão de datas, horários e status de pagamento (Pago/Pendente).
 3.  **Membro C: Agente de Serviços (`model/Servico.kt`)**
-    *   Foco: Catálogo de serviços e valores.
-4.  **Membro D: Lembretes (`model/Lembretes.kt`)**
-    *   Foco: Ativação e desativação de lembretes, configuração da antecedência e agendamento de notificações locais.
+    *   Foco: Catálogo de serviços, definições de preços e descrições.
+4.  **Membro D: Agente de Lembretes (`model/Lembrete.kt`)**
+    *   Foco: Configuração de antecedência e lógica de disparo de notificações locais.
 
 ## 🛠 Tech Stack
 - **Interface:** Jetpack Compose + Material 3
-- **Persistência:** Room Database
+- **Persistência:** Room Database (Offline First)
 - **Navegação:** Navigation Compose
 - **Assincronismo:** Coroutines & Flow

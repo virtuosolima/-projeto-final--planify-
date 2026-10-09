@@ -1,11 +1,20 @@
 package br.edu.ifpe.planify.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.time.LocalDate
 import java.time.LocalTime
 
+enum class PaymentStatus {
+    PAGO, PENDENTE
+}
+
+@Entity(tableName = "compromissos")
 data class Compromisso(
-    val id: Int = 0,
-    val clienteId: Int, // ID do Cliente associado
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    val clienteId: Long,
+    val servicoId: Long,
     val descricao: String,
     val data: LocalDate,
     val horarioInicial: LocalTime,
